@@ -37,49 +37,55 @@ public class TwitterTest {
 		tp.setKorisnik("Miki");
 		tp.setPoruka("KKK");
 		expected.addLast(tp);
-		if(expected.get(0).getKorisnik().equals(tt.vratiSvePoruke().get(0).getKorisnik()) && expected.get(0).getPoruka().equals(tt.vratiSvePoruke().get(0).getPoruka())){
-			expected = tt.vratiSvePoruke();
-		}
 		assertEquals(expected, tt.vratiSvePoruke());
 	}
 	
 	@Test
 	public void testVratiSvePoruke(){
-		TwitterPoruka tp[] = new TwitterPoruka[4];
-		for(int i = 0; i < tp.length ; i++){
-			tp[i] = new TwitterPoruka();
-			tp[i].setKorisnik("A");
-			tp[i].setPoruka("B");
-		}
-		tt.unesi("A", "B");
-		tt.unesi("A", "B");
-		tt.unesi("A", "B");
-		tt.unesi("A", "B");
+		LinkedList<TwitterPoruka> expected = new LinkedList<TwitterPoruka>();
+		TwitterPoruka tp1 = new TwitterPoruka();
+		tp1.setKorisnik("Lala");
+		tp1.setPoruka("Lala joined.");
+		TwitterPoruka tp2 = new TwitterPoruka();
+		tp2.setKorisnik("Mika");
+		tp2.setPoruka("Mika joined.");
+		TwitterPoruka tp3 = new TwitterPoruka();
+		tp3.setKorisnik("Laza");
+		tp3.setPoruka("Laza joined.");
+		TwitterPoruka tp4 = new TwitterPoruka();
+		tp4.setKorisnik("Misa");
+		tp4.setPoruka("Misa joined.");
+		expected.addLast(tp1);
+		expected.addLast(tp2);
+		expected.addLast(tp3);
+		expected.addLast(tp4);
+		
+		tt.unesi("Lala", "Lala joined.");
+		tt.unesi("Mika", "Mika joined.");
+		tt.unesi("Laza", "Laza joined.");
+		tt.unesi("Misa", "Misa joined.");
 		LinkedList<TwitterPoruka> provera = tt.vratiSvePoruke();
-		for(int i = 0; i < provera.size(); i++){
-			if(provera.get(i).getKorisnik().equals(tp[i].getKorisnik()) && provera.get(i).getPoruka().equals(tp[i].getPoruka())){}else{
-				fail();
-			}
-		}
+		assertEquals(expected, provera);
 	}
 
 	@Test
 	public void testVratiPoruke() {
-		TwitterPoruka expected[] = new TwitterPoruka[2];
+		TwitterPoruka[] expected = new TwitterPoruka[10];
+		TwitterPoruka tp1 =  new TwitterPoruka();
+		tp1.setKorisnik("Miki");
+		tp1.setPoruka("Mala moja.");
+		TwitterPoruka tp2 =  new TwitterPoruka();
+		tp2.setKorisnik("Kosta");
+		tp2.setPoruka("Dome moj.");
+		expected[0] = tp1;
+		expected[1] = tp2;
+		
 		tt.unesi("Miki", "Mala moja.");
-		expected[0] = new TwitterPoruka();
-		expected[0].setKorisnik("Miki");
-		expected[0].setKorisnik("Mala moja.");
 		tt.unesi("Kosta", "Dome moj.");
-		expected[1] = new TwitterPoruka();
-		expected[1].setKorisnik("Kosta");
-		expected[1].setKorisnik("Dome moj.");
 		tt.unesi("Masa", "Lela Vranjanka");
 		TwitterPoruka provera[] = tt.vratiPoruke(10, "moj");
-		for(int i = 0; i< provera.length && provera[i] != null ; i++){
-			if(!(provera[i].getKorisnik().equals(expected[i].getKorisnik()) && provera[i].getPoruka().equals(expected[i].getPoruka())))
-					fail();
-		}
+		assertArrayEquals(expected, provera);
+		
 		
 	}
 	@Test(expected=java.lang.RuntimeException.class)

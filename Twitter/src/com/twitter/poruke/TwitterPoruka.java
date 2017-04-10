@@ -27,7 +27,7 @@ public class TwitterPoruka {
 	/**
 	 * Daje ime korisniku.
 	 * @param korisnik ime korisnika
-	 * @throws RuntimeException za vrednosti:
+	 * @throws java.lang.RuntimeException za vrednosti:
 	 * <ul>
 	 * <li>NULL</li>
 	 * <li>Prazan String</li>
@@ -48,7 +48,7 @@ public class TwitterPoruka {
 	/**
 	 * Generise poruku koja se salje.
 	 * @param poruka poruka koja se salje
-	 * @throws RuntimeException za vrednosti:
+	 * @throws java.lang.RuntimeException za vrednosti:
 	 * <ul>
 	 * <li>NULL</li>
 	 * <li>Prazan String</li>
@@ -67,5 +67,23 @@ public class TwitterPoruka {
 	public String toString() {
 		return "KORISNIK:" + korisnik + " PORUKA:" + poruka;
 	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof TwitterPoruka))
+			return false;
+		TwitterPoruka other = (TwitterPoruka) obj;
+		if(korisnik.equals(other.getKorisnik()) && poruka.equals(other.getPoruka())) {
+			return true;
+		}
+		return false;
+	}
+
+	
 
 }

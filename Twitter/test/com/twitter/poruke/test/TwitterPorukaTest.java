@@ -27,20 +27,14 @@ public class TwitterPorukaTest {
 		assertEquals("Kica", t.getKorisnik());
 	}
 	
-	@Test(expected=RuntimeException.class)
+	@Test(expected=java.lang.RuntimeException.class)
 	public void testSetKorisnikNull(){
 		t.setKorisnik(null);
-		if(t.getKorisnik() == null) {
-			throw new RuntimeException();
-		}
 	}
 	
-	@Test(expected=RuntimeException.class)
+	@Test(expected=java.lang.RuntimeException.class)
 	public void testSetKorisnikPrazanString (){
 		t.setKorisnik("");
-		if(t.getKorisnik().isEmpty()) {
-			throw new RuntimeException();
-		}
 	}
 	 
 	@Test
@@ -49,20 +43,17 @@ public class TwitterPorukaTest {
 		assertEquals("Hello world.", t.getPoruka());
 	}
 	
-	@Test(expected=RuntimeException.class)
+	@Test(expected=java.lang.RuntimeException.class)
 	public void testSetPorukaNull(){
 		t.setPoruka(null);
 	}
 	
-	@Test(expected=RuntimeException.class)
+	@Test(expected=java.lang.RuntimeException.class)
 	public void testSetPorukaPrazanString (){
 		t.setPoruka("");
-		if(t.getPoruka().isEmpty()) {
-			throw new RuntimeException();
-		}
 	}
 	
-	@Test(expected=RuntimeException.class)
+	@Test(expected=java.lang.RuntimeException.class)
 	public void testSetPorukaViseOd140() {
 		t.setPoruka("Step now in front of the door and come in"
 				+ ", you have now just entered in the sorceror's den,"
